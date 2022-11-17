@@ -1,1 +1,1 @@
-# prog3
+# simple banking application which allows the user to open an account, select an account, withdraw and deposit money, check balance
