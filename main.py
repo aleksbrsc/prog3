@@ -89,48 +89,69 @@ account1 = Bank("Account 1")
 account2 = Bank("Account 2")
 account3 = Bank("Account 3")
 accounts = [account1, account2, account3]
-selectedAccount = ""
 
 def showAccountMenu(selectedAccount):
-    return selectedAccount
+    print("\nSelected account:",Bank.getBankName(selectedAccount))
+    print("Check Balance / Deposit / Withdraw / Exit Account\n")
+    balanceOptions = ["check balance", "check", "c", "balance", "bal", "b"]
+    depositOptions = ["deposit", "d"]
+    withdrawOptions = ['withdraw', 'w']
+    exitOptions = ["exit account", "exit", "e"]
+    while True:
+        accountMenu = input("\u001b[245m> \u001b[0m").lower()
+        if accountMenu in balanceOptions:
+            print("\nYour balance:",Bank.getCurrentBalance(selectedAccount))
+            # ERROR HERE object has no value _currentBalance
+        elif accountMenu in depositOptions:
+            print("\nHow much would you like to deposit?\n")
+        elif accountMenu in withdrawOptions:
+            print("\nHow much would you like to withdraw?\n")
+        elif accountMenu in exitOptions:
+            print("\nVery well.\n")
+            showMainMenu()
+        else:
+            print("\nThat is not a valid option. Please try again.")
+            print("Check Balance / Deposit / Withdraw / Exit Account\n")
+            
     #	Check Balance: Display the balance of the selected account
     #	Deposit: Prompt the user for an amount to deposit and perform the deposit using the methods in account class. 
     #	Withdraw: Prompt the user for an amount to withdraw and perform the withdrawal using the methods in the account class. 
     #	Exit Account: go back to Banking Main Menu
 
 def showMainMenu():
-    print("~ MAIN MENU\n\nWould you like to select an account or exit?\n(select account / exit)\n\n")
+    print("~ MAIN MENU\n\nWould you like to select an account or exit?\n(select account / exit)\n")
+    selectAccountOptions = ["select account", "select", "s"]
+    exitOptions = ["exit", "e"]
     while True:
         accountOrExit = input("\u001b[245m> \u001b[0m").lower()
-        if accountOrExit == "select account" or "select" or "s":
+        if accountOrExit in selectAccountOptions:
             break
-        elif accountOrExit == "exit":
+        elif accountOrExit in exitOptions:
             print("\nVery well.\n")
             quit()
+        else:
+            print("\nThat was not a valid option. Please try again\n(select account / exit)\n")
     print("\nVery well. Please select an account.\n\n")
     print("Account 1, Account 2, Account 3")
+    account1options = ["account 1","1","one"]
+    account2options = ["account 2","2","two"]
+    account3options = ["account 3","3","three"]
     while True:
-        selectAccounts = input("\n\u001b[245m> \u001b[0m").lower()
-        if selectAccounts == "account 1" or "1":
-            selectedAccount = account1
-        elif selectAccounts == "account 2" or "2":
-            selectedAccount = account2
-        elif selectAccounts == "account 3" or "3":
-            selectedAccount = account3
-        if selectedAccount in accounts:
-            print("\nYou have selected your account.")
+        selectAccount = input("\n\u001b[245m> \u001b[0m").lower()
+        if selectAccount in account1options:
+            selectAccount = account1
+        elif selectAccount in account2options:
+            selectAccount = account2
+        elif selectAccount in account3options:
+            selectAccount = account3
+        if selectAccount in accounts:
             break
         else:
             print("\nThat is not a valid account. Please try again.")
             print("Account 1, Account 2, Account 3")
-    print(showAccountMenu(selectedAccount))
-    showAccountMenu(selectedAccount)
+    showAccountMenu(selectAccount)
 
 def run():
     showMainMenu()
 
 run()
-
-
-
-
