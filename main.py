@@ -1,9 +1,11 @@
 class Account:
-    def __init__(self, _accountNumber, _accountHolderName, _rateOfInterest, _currentBalance):
+    def __init__(self, _bankName, _accountNumber, _accountHolderName, _rateOfInterest, _minimumSavingsBalance, _savingsBalance,  _chequingBalance, _overdraftAllowed):
         self._accountNumber = _accountNumber
         self._accountHolderName = _accountHolderName
         self._rateOfInterest = _rateOfInterest
-        self._currentBalance = _currentBalance
+        self._bankName = Bank(_bankName)
+        self._savingsAccount = SavingsAccount(_minimumSavingsBalance, _savingsBalance)
+        self._chequingAccount = ChequingAccount(_chequingBalance, _overdraftAllowed)
 
     def getAccountNumber(self):
         return self._accountNumber
@@ -23,23 +25,7 @@ class Account:
     def setRateofInterest(self, x):
         self._rateOfInterest = x
 
-    def getCurrentBalance(self):
-        return self._currentBalance
-    
-    def setCurrentBalance(self, x):
-        self._currentBalance = x
-
-    def withdraw(self, withdraw):
-        self._currentBalance -= withdraw
-        #check if negative
-        pass
-
-    def deposit(self, deposit):
-        self._currentBalance += deposit
-        return deposit
-        #check if negative
-
-class Bank(Account):
+class Bank():
     def __init__(self, _bankName):
         self._bankName = _bankName
 
@@ -49,30 +35,43 @@ class Bank(Account):
     def setBankName(self, x):
         self._bankName = x
 
-    def openAccount():
-        pass
-
     def searchAccount():
         pass
 
-class SavingAccount(Bank):
-    def __init__(self, _minimumBalance):
-        self._minimumBalance = _minimumBalance
+class SavingsAccount():
+    def __init__(self, _minimumSavingsBalance, _savingsBalance):
+        self._minimumSavingsBalance = _minimumSavingsBalance
+        self._savingsBalance = _savingsBalance
 
-    def getMinimumBalance(self):
-        return self._minimumBalance
+    def getMinimumSavingsBalance(self):
+        return self._minimumSavingsBalance
 
-    def setMinimumBalance(self, x):
-        self._minimumBalance = x
+    def setMinimumSavingsBalance(self, x):
+        self._minimumSavingsBalance = x
+
+    def getSavingsBalance(self):
+        return self._savingsBalance
+
+    def setSavingsBalance(self, x):
+        self._savingsBalance = x
 
     def withdraw(self, withdraw):
-        self._currentBalance -= withdraw
-        #check if negative
-        pass
+        self._savingsBalance -= withdraw
 
-class ChequingAccount(Bank):
-    def __init__(self, _overdraftAllowed):
+    def deposit(self, amount):
+        self._savingsBalance += amount
+        return f"You deposited ${amount}, your new balance is ${self.getSavingsBalance()}."
+
+class ChequingAccount():
+    def __init__(self, _chequingBalance, _overdraftAllowed):
         self._overdraftAllowed = _overdraftAllowed
+        self._chequingBalance = _chequingBalance
+    
+    def getChequingBalance(self):
+        return self._chequingBalance
+
+    def setChequingBalance(self, x):
+        self._chequingBalance = x
 
     def getOverdraftAllowed(self):
         return self._overdraftAllowed
@@ -80,19 +79,36 @@ class ChequingAccount(Bank):
     def setOverdraftAllowed(self, x):
         self._overdraftAllowed = x
 
-    def withdraw(self, withdraw):
-        self._currentBalance -= withdraw
-        #check if negative
-        pass
+    def deposit(self, amount):
+        self._chequingBalance += amount
+        return f"You deposited ${amount}, your new balance is ${self.getChequingBalance()}."
 
-account1 = Bank("Account 1")
-account2 = Bank("Account 2")
-account3 = Bank("Account 3")
+    def withdraw(self, withdraw):
+        self._chequingBalance -= withdraw
+
+
+account1 = Account("Bing Chilling Bank", "Account 1", 1, "Holder 1", 1, 1000, 1000, 100)
+account2 = Account("Bing Chilling Bank", "Account 2", 2, "Holder 1", 1, 1000, 1000, 100)
+account3 = Account("Bing Chilling Bank", "Account 3", 3, "Holder 1", 1, 1000, 1000, 100)
 accounts = [account1, account2, account3]
 
 def showAccountMenu(selectedAccount):
-    print("\nSelected account:",Bank.getBankName(selectedAccount))
-    print("Check Balance / Deposit / Withdraw / Exit Account\n")
+    print("\nSelected account:", Account.getAccountNumber(selectedAccount))
+    print("Would you like to enter your Chequing or Savings account?\n")
+    chequingOptions = ["chequing account", "chequing", "c"]
+    savingsOptions = ["savings account", "savings", "saving", "s"]
+    while True:
+        savingsOrChequing = input("\u001b[245m> \u001b[0m").lower()
+        if savingsOrChequing in savingsOptions:
+            selectedSOC = "savings"
+            break
+        elif savingsOrChequing in chequingOptions:
+            selectedSOC = "chequing"
+            break
+        else: 
+            print("\nThat is not a valid option. Please try again.")
+            print("Would you like to enter your Chequing or Savings account?\n")
+    print("\nCheck Balance / Deposit / Withdraw / Exit Account\n")
     balanceOptions = ["check balance", "check", "c", "balance", "bal", "b"]
     depositOptions = ["deposit", "d"]
     withdrawOptions = ['withdraw', 'w']
@@ -100,11 +116,39 @@ def showAccountMenu(selectedAccount):
     while True:
         accountMenu = input("\u001b[245m> \u001b[0m").lower()
         if accountMenu in balanceOptions:
-            print("\nYour balance:",Bank.getCurrentBalance(selectedAccount))
-            # ERROR HERE object has no value _currentBalance
+            # change this for chequing and savings
+            if selectedSOC == "savings":
+                print("\nYour balance:",selectedAccount._savingsAccount.getSavingsBalance())
+            elif selectedSOC == "chequing":
+                print("\nYour balance:",selectedAccount._chequingAccount.getChequingBalance())
+            print("\nCheck Balance / Deposit / Withdraw / Exit Account\n")
         elif accountMenu in depositOptions:
+            amount = 0
             print("\nHow much would you like to deposit?\n")
+            if selectedSOC == "savings":
+                while True:
+                    try: 
+                        amount = float(input("\u001b[245m> \u001b[0m"))
+                    except: pass
+                    if amount > 0:
+                        print("\n",selectedAccount._savingsAccount.deposit(amount))
+                        print("\nCheck Balance / Deposit / Withdraw / Exit Account\n")
+                        break
+                    else:
+                        print("\nInvalid deposit (amount must be a number greater than 0\n")
+            elif selectedSOC == "chequing":
+                while True:
+                    try: 
+                        amount = float(input("\u001b[245m> \u001b[0m"))
+                    except: pass
+                    if amount > 0:
+                        print("\n",selectedAccount._chequingAccount.deposit(amount))
+                        print("\nCheck Balance / Deposit / Withdraw / Exit Account\n")
+                        break
+                    else:
+                        print("\nInvalid deposit (amount must be a number greater than 0\n")
         elif accountMenu in withdrawOptions:
+            amount = 0
             print("\nHow much would you like to withdraw?\n")
         elif accountMenu in exitOptions:
             print("\nVery well.\n")
@@ -112,8 +156,7 @@ def showAccountMenu(selectedAccount):
         else:
             print("\nThat is not a valid option. Please try again.")
             print("Check Balance / Deposit / Withdraw / Exit Account\n")
-            
-    #	Check Balance: Display the balance of the selected account
+    
     #	Deposit: Prompt the user for an amount to deposit and perform the deposit using the methods in account class. 
     #	Withdraw: Prompt the user for an amount to withdraw and perform the withdrawal using the methods in the account class. 
     #	Exit Account: go back to Banking Main Menu
@@ -155,3 +198,4 @@ def run():
     showMainMenu()
 
 run()
+
