@@ -7,6 +7,3 @@ class Bank():
 
     def setBankName(self, x):
         self._bankName = x
-
-    def searchAccount():
-        pass
