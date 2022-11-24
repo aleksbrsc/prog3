@@ -55,12 +55,13 @@ class SavingsAccount():
     def setSavingsBalance(self, x):
         self._savingsBalance = x
 
-    def withdraw(self, withdraw):
-        self._savingsBalance -= withdraw
-
     def deposit(self, amount):
         self._savingsBalance += amount
         return f"You deposited ${amount}, your new balance is ${self.getSavingsBalance()}."
+
+    def withdraw(self, amount):
+        self._savingsBalance -= amount
+        return f"You have withdrawn ${amount}, your new balance is ${self.getSavingsBalance()}."
 
 class ChequingAccount():
     def __init__(self, _chequingBalance, _overdraftAllowed):
@@ -83,13 +84,14 @@ class ChequingAccount():
         self._chequingBalance += amount
         return f"You deposited ${amount}, your new balance is ${self.getChequingBalance()}."
 
-    def withdraw(self, withdraw):
-        self._chequingBalance -= withdraw
+    def withdraw(self, amount):
+        self._chequingBalance -= amount
+        return f"You have withdrawn ${amount}, your new balance is ${self.getChequingBalance()}."
 
-
-account1 = Account("Bing Chilling Bank", "Account 1", 1, "Holder 1", 1, 1000, 1000, 100)
-account2 = Account("Bing Chilling Bank", "Account 2", 2, "Holder 1", 1, 1000, 1000, 100)
-account3 = Account("Bing Chilling Bank", "Account 3", 3, "Holder 1", 1, 1000, 1000, 100)
+#stringBANKNAME, accountNumber, stringHOLDERNAME, rateofinterest, minimumSavingsBalance, savingsBalance, chequingBalance, overdraftAllowed
+account1 = Account("Bing Chilling Bank", 1, "Holder 1", 1, 100, 1000, 1000, 100)
+account2 = Account("Bing Chilling Bank", 2, "Holder 1", 1, 100, 1000, 1000, 100)
+account3 = Account("Bing Chilling Bank", 3, "Holder 1", 1, 100, 1000, 1000, 100)
 accounts = [account1, account2, account3]
 
 def showAccountMenu(selectedAccount):
@@ -146,10 +148,34 @@ def showAccountMenu(selectedAccount):
                         print("\nCheck Balance / Deposit / Withdraw / Exit Account\n")
                         break
                     else:
-                        print("\nInvalid deposit (amount must be a number greater than 0\n")
+                        print("\nInvalid withdrawal (amount must be a number greater than 0\n")
         elif accountMenu in withdrawOptions:
             amount = 0
             print("\nHow much would you like to withdraw?\n")
+            
+            if selectedSOC == "savings":
+                while True:
+                    try: 
+                        amount = float(input("\u001b[245m> \u001b[0m"))
+                    except: pass
+                    if amount > 0 and ((selectedAccount._savingsAccount.getSavingsBalance() - amount) > (selectedAccount._savingsAccount.getMinimumSavingsBalance() - 1)):
+                        print("\n",selectedAccount._savingsAccount.withdraw(amount))
+                        print("\nCheck Balance / Deposit / Withdraw / Exit Account\n")
+                        break
+                    else:
+                        print("\nInvalid withdrawal (amount must be a number greater than 0 that doesn't impede on your minimum balance requirement\n")
+            elif selectedSOC == "chequing":
+                while True:
+                    try: 
+                        amount = float(input("\u001b[245m> \u001b[0m"))
+                    except: pass
+                    if amount > 0 and ((selectedAccount._chequingAccount.getChequingBalance() - amount) > selectedAccount._chequingAccount.getOverdraftAllowed()):
+                        print("\n",selectedAccount._chequingAccount.withdraw(amount))
+                        print("\nCheck Balance / Deposit / Withdraw / Exit Account\n")
+                        break
+                    else:
+                        print("\nInvalid withdrawal (amount must be a number greater than 0 that doesn't impede on your overdraft limit\n")
+
         elif accountMenu in exitOptions:
             print("\nVery well.\n")
             showMainMenu()
