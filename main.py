@@ -152,18 +152,31 @@ def showAccountMenu(selectedAccount):
         elif accountMenu in withdrawOptions:
             amount = 0
             print("\nHow much would you like to withdraw?\n")
-            
             if selectedSOC == "savings":
                 while True:
                     try: 
                         amount = float(input("\u001b[245m> \u001b[0m"))
                     except: pass
-                    if amount > 0 and ((selectedAccount._savingsAccount.getSavingsBalance() - amount) > (selectedAccount._savingsAccount.getMinimumSavingsBalance() - 1)):
+                    if amount > 0 and ((selectedAccount._savingsAccount.getSavingsBalance() - amount) >= selectedAccount._savingsAccount.getMinimumSavingsBalance()):
                         print("\n",selectedAccount._savingsAccount.withdraw(amount))
                         print("\nCheck Balance / Deposit / Withdraw / Exit Account\n")
                         break
                     else:
-                        print("\nInvalid withdrawal (amount must be a number greater than 0 that doesn't impede on your minimum balance requirement\n")
+                        print("\nInvalid withdrawal (amount must be a number greater than 0 that doesn't impede on your minimum balance requirement")
+                        print("[1] Try again\n[2] Exit\n")
+                        while True:
+                            try: 
+                                tryOrExit = input("\u001b[245m> \u001b[0m")
+                            except: pass
+                            if tryOrExit == "1":
+                                print("\nHow much would you like to withdraw?\n")
+                                break
+                            elif tryOrExit == "2":
+                                print("")
+                                showAccountMenu(selectedAccount)
+                            else:
+                                print("\nInvalid option")
+                                print("[1] Try again\n[2] Exit\n")
             elif selectedSOC == "chequing":
                 while True:
                     try: 
@@ -175,7 +188,20 @@ def showAccountMenu(selectedAccount):
                         break
                     else:
                         print("\nInvalid withdrawal (amount must be a number greater than 0 that doesn't impede on your overdraft limit\n")
-
+                        print("[1] Try again\n[2] Exit\n")
+                        while True:
+                            try: 
+                                tryOrExit = input("\u001b[245m> \u001b[0m")
+                            except: pass
+                            if tryOrExit == "1":
+                                print("\nHow much would you like to withdraw?\n")
+                                break
+                            elif tryOrExit == "2":
+                                print("")
+                                showAccountMenu(selectedAccount)
+                            else:
+                                print("\nInvalid option")
+                                print("[1] Try again\n[2] Exit\n")
         elif accountMenu in exitOptions:
             print("\nVery well.\n")
             showMainMenu()
