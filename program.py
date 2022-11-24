@@ -50,7 +50,7 @@ def showAccountMenu(selectedAccount):
                         print("\nCheck Balance / Deposit / Withdraw / Exit Account\n")
                         break
                     else:
-                        print("\nInvalid deposit (amount must be a number greater than 0\n")
+                        print("\nInvalid deposit (amount must be a number greater than 0)\n")
             elif selectedSOC == "chequing":
                 while True:
                     try: 
@@ -61,7 +61,7 @@ def showAccountMenu(selectedAccount):
                         print("\nCheck Balance / Deposit / Withdraw / Exit Account\n")
                         break
                     else:
-                        print("\nInvalid withdrawal (amount must be a number greater than 0\n")
+                        print("\nInvalid deposit (amount must be a number greater than 0)\n")
         elif accountMenu in withdrawOptions:
             amount = 0
             print("\nHow much would you like to withdraw?\n")
@@ -75,7 +75,7 @@ def showAccountMenu(selectedAccount):
                         print("\nCheck Balance / Deposit / Withdraw / Exit Account\n")
                         break
                     else:
-                        print("\nInvalid withdrawal (amount must be a number greater than 0 that doesn't impede on your minimum balance requirement")
+                        print("\nInvalid withdrawal (amount must be a number greater than 0 that doesn't impede on your minimum balance requirement)")
                         print("[1] Try again\n[2] Exit\n")
                         while True:
                             try: 
@@ -100,7 +100,7 @@ def showAccountMenu(selectedAccount):
                         print("\nCheck Balance / Deposit / Withdraw / Exit Account\n")
                         break
                     else:
-                        print("\nInvalid withdrawal (amount must be a number greater than 0 that doesn't impede on your overdraft limit\n")
+                        print("\nInvalid withdrawal (amount must be a number greater than 0 that doesn't impede on your overdraft limit)\n")
                         print("[1] Try again\n[2] Exit\n")
                         while True:
                             try: 
