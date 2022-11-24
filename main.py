@@ -182,7 +182,7 @@ def showAccountMenu(selectedAccount):
                     try: 
                         amount = float(input("\u001b[245m> \u001b[0m"))
                     except: pass
-                    if amount > 0 and ((selectedAccount._chequingAccount.getChequingBalance() - amount) > selectedAccount._chequingAccount.getOverdraftAllowed()):
+                    if amount > 0 and ((selectedAccount._chequingAccount.getChequingBalance() - amount) >= (0 - selectedAccount._chequingAccount.getOverdraftAllowed())):
                         print("\n",selectedAccount._chequingAccount.withdraw(amount))
                         print("\nCheck Balance / Deposit / Withdraw / Exit Account\n")
                         break
@@ -250,4 +250,3 @@ def run():
     showMainMenu()
 
 run()
-
