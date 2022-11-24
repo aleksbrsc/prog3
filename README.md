@@ -1,1 +1,1 @@
-# simple banking application which allows the user to open an account, select an account, withdraw and deposit money, check balance
+# simple banking application which allows the user to select an account, withdraw and deposit money, check balance
