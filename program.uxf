@@ -1,9 +1,9 @@
-<diagram program="umletino" version="15.0.0"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>210</x><y>240</y><w>210</w><h>80</h></coordinates><panel_attributes>Bank
+<diagram program="umletino" version="15.0.0"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>210</x><y>90</y><w>210</w><h>80</h></coordinates><panel_attributes>Bank
 --
 -_bankName
 --
 +getBankName
-+setBankName</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>570</x><y>150</y><w>210</w><h>240</h></coordinates><panel_attributes>Account
++setBankName</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>570</x><y>0</y><w>210</w><h>240</h></coordinates><panel_attributes>Account
 --
 -_bankName
 -_accountNumber
@@ -19,7 +19,7 @@
 +getAccountHolderName
 +setAccountHolderName
 +getRateOfInterest
-+setRateofInterest</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>740</x><y>510</y><w>210</w><h>150</h></coordinates><panel_attributes>SavingsAccount
++setRateofInterest</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>740</x><y>360</y><w>210</w><h>150</h></coordinates><panel_attributes>SavingsAccount
 --
 -_minimumSavingsBalance
 -_savingsBalance
@@ -29,7 +29,7 @@
 +getSavingsBalance
 +setSavingsBalance
 +deposit
-+withdraw</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>410</x><y>510</y><w>210</w><h>150</h></coordinates><panel_attributes>ChequingAccount
++withdraw</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>410</x><y>360</y><w>210</w><h>150</h></coordinates><panel_attributes>ChequingAccount
 --
 -_chequingBalance
 -_overdraftAlowed
@@ -39,7 +39,7 @@
 +getOverdraftAllowed
 +setOverdraftAllowed
 +deposit
-+withdraw</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>750</x><y>380</y><w>40</w><h>150</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
-m2= 1</panel_attributes><additional_attributes>10;10;10;130</additional_attributes></element><element><id>Relation</id><coordinates><x>580</x><y>380</y><w>40</w><h>150</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
-m2=1</panel_attributes><additional_attributes>10;10;10;130</additional_attributes></element><element><id>Relation</id><coordinates><x>410</x><y>270</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
++withdraw</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>750</x><y>230</y><w>40</w><h>150</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m2= 1</panel_attributes><additional_attributes>10;10;10;130</additional_attributes></element><element><id>Relation</id><coordinates><x>580</x><y>230</y><w>40</w><h>150</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes><additional_attributes>10;10;10;130</additional_attributes></element><element><id>Relation</id><coordinates><x>410</x><y>120</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
 m2=1</panel_attributes><additional_attributes>160;10;10;10</additional_attributes></element></diagram>
