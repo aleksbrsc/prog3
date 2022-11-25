@@ -1,8 +1,8 @@
 class ChequingAccount():
     def __init__(self, _chequingBalance, _overdraftAllowed):
-        self._overdraftAllowed = _overdraftAllowed
         self._chequingBalance = _chequingBalance
-    
+        self._overdraftAllowed = _overdraftAllowed
+        
     def getChequingBalance(self):
         return self._chequingBalance
 
