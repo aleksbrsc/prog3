@@ -7,7 +7,7 @@ class Account:
         self._accountNumber = _accountNumber
         self._accountHolderName = _accountHolderName
         self._rateOfInterest = _rateOfInterest
-        self._bankName = bank.Bank(_bankName)
+        self._bank = bank.Bank(_bankName)
         self._savingsAccount = savingsAccount.SavingsAccount(_minimumSavingsBalance, _savingsBalance)
         self._chequingAccount = chequingAccount.ChequingAccount(_chequingBalance, _overdraftAllowed)
 
