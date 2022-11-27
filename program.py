@@ -136,7 +136,7 @@ def showMainMenu():
             quit()
         else:
             print("\nThat was not a valid option. Please try again\n(select account / exit)\n")
-    print("\nVery well. Please select an account.\n\n")
+    print("\nVery well. Please select an account.\n")
     print("Account 1, Account 2, Account 3")
     account1options = ["account 1","1","one"]
     account2options = ["account 2","2","two"]
