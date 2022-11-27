@@ -10,11 +10,11 @@ accounts = [account1, account2, account3]
 # function to show account menu for the account selected from main menu 
 def showAccountMenu(selectedAccount):
     print("\nSelected account:", account.Account.getAccountNumber(selectedAccount))
-    print("Would you like to enter your Chequing or Savings account?\n")
+    print("Would you like to enter your 'Chequing' or 'Savings' account?\n")
     chequingOptions = ["chequing account", "chequing", "c"]
     savingsOptions = ["savings account", "savings", "saving", "s"]
     while True:
-        savingsOrChequing = input("\u001b[245m> \u001b[0m").lower()
+        savingsOrChequing = input("\u001b[90m> \u001b[0m").lower()
         if savingsOrChequing in savingsOptions:
             selectedSOC = "savings"
             break
@@ -30,7 +30,7 @@ def showAccountMenu(selectedAccount):
     withdrawOptions = ['withdraw', 'w']
     exitOptions = ["exit account", "exit", "e"]
     while True:
-        accountMenu = input("\u001b[245m> \u001b[0m").lower()
+        accountMenu = input("\u001b[90m> \u001b[0m").lower()
         if accountMenu in balanceOptions:
             if selectedSOC == "savings":
                 print("\nYour balance:", selectedAccount._savingsAccount.getSavingsBalance())
@@ -43,7 +43,7 @@ def showAccountMenu(selectedAccount):
             if selectedSOC == "savings":
                 while True:
                     try: 
-                        amount = float(input("\u001b[245m> \u001b[0m"))
+                        amount = float(input("\u001b[90m> \u001b[0m"))
                     except: pass
                     if amount > 0:
                         print("\n",selectedAccount._savingsAccount.deposit(amount))
@@ -54,7 +54,7 @@ def showAccountMenu(selectedAccount):
             elif selectedSOC == "chequing":
                 while True:
                     try: 
-                        amount = float(input("\u001b[245m> \u001b[0m"))
+                        amount = float(input("\u001b[90m> \u001b[0m"))
                     except: pass
                     if amount > 0:
                         print("\n",selectedAccount._chequingAccount.deposit(amount))
@@ -68,7 +68,7 @@ def showAccountMenu(selectedAccount):
             if selectedSOC == "savings":
                 while True:
                     try: 
-                        amount = float(input("\u001b[245m> \u001b[0m"))
+                        amount = float(input("\u001b[90m> \u001b[0m"))
                     except: pass
                     if amount > 0 and ((selectedAccount._savingsAccount.getSavingsBalance() - amount) >= selectedAccount._savingsAccount.getMinimumSavingsBalance()):
                         print("\n",selectedAccount._savingsAccount.withdraw(amount))
@@ -79,7 +79,7 @@ def showAccountMenu(selectedAccount):
                         print("[1] Try again\n[2] Exit\n")
                         while True:
                             try: 
-                                tryOrExit = input("\u001b[245m> \u001b[0m")
+                                tryOrExit = input("\u001b[90m> \u001b[0m")
                             except: pass
                             if tryOrExit == "1":
                                 print("\nHow much would you like to withdraw?\n")
@@ -93,7 +93,7 @@ def showAccountMenu(selectedAccount):
             elif selectedSOC == "chequing":
                 while True:
                     try: 
-                        amount = float(input("\u001b[245m> \u001b[0m"))
+                        amount = float(input("\u001b[90m> \u001b[0m"))
                     except: pass
                     if amount > 0 and ((selectedAccount._chequingAccount.getChequingBalance() - amount) >= (0 - selectedAccount._chequingAccount.getOverdraftAllowed())):
                         print("\n",selectedAccount._chequingAccount.withdraw(amount))
@@ -104,7 +104,7 @@ def showAccountMenu(selectedAccount):
                         print("[1] Try again\n[2] Exit\n")
                         while True:
                             try: 
-                                tryOrExit = input("\u001b[245m> \u001b[0m")
+                                tryOrExit = input("\u001b[90m> \u001b[0m")
                             except: pass
                             if tryOrExit == "1":
                                 print("\nHow much would you like to withdraw?\n")
@@ -128,7 +128,7 @@ def showMainMenu():
     selectAccountOptions = ["select account", "select", "s"]
     exitOptions = ["exit", "e"]
     while True:
-        accountOrExit = input("\u001b[245m> \u001b[0m").lower()
+        accountOrExit = input("\u001b[90m> \u001b[0m").lower()
         if accountOrExit in selectAccountOptions:
             break
         elif accountOrExit in exitOptions:
@@ -142,7 +142,7 @@ def showMainMenu():
     account2options = ["account 2","2","two"]
     account3options = ["account 3","3","three"]
     while True:
-        selectAccount = input("\n\u001b[245m> \u001b[0m").lower()
+        selectAccount = input("\n\u001b[90m> \u001b[0m").lower()
         if selectAccount in account1options:
             selectAccount = account1
         elif selectAccount in account2options:
