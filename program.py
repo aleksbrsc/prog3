@@ -124,7 +124,7 @@ def showAccountMenu(selectedAccount):
 
 # function to show main menu
 def showMainMenu():
-    print("~ MAIN MENU\n\nWould you like to select an account or exit?\n(select account / exit)\n")
+    print("\u001b[90m~\u001b[0m MAIN MENU\n\nWould you like to select an account or exit?\n(select account / exit)\n")
     selectAccountOptions = ["select account", "select", "s"]
     exitOptions = ["exit", "e"]
     while True:
